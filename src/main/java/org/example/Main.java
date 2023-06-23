@@ -1,17 +1,13 @@
 package org.example;
 
+import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
-import steps.BaseSteps;
-import tests.BaseTest;
+import org.openqa.selenium.WebElement;
+import org.openqa.selenium.chrome.ChromeDriver;
 
 public class Main {
     public static void main(String[] args) {
-        WebDriver driver;
-
-        BaseTest baseTest = new BaseTest();
-        BaseSteps baseSteps = new BaseSteps();
-
-        baseSteps.getHtmlPage();
 
     }
+
 }
