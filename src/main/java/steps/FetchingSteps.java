@@ -31,7 +31,7 @@ public class FetchingSteps {
         double stockPrice = Double.parseDouble(basePage.getStockPrice().getAttribute("value"));
         String mktCap = basePage.getMktCap().getTextContent();
         double peRatio = Double.parseDouble(basePage.getPERatio().getTextContent());
-        String divYield = basePage.getDivYield().getTextContent();
+        double divYield = Double.parseDouble(basePage.getDivYield().getTextContent().substring(6, 10));
 
         System.out.println(stockPrice);
         System.out.println(mktCap);
