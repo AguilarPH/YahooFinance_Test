@@ -1,23 +1,18 @@
 package pageobjects;
 
-import com.gargoylesoftware.htmlunit.WebClient;
 import com.gargoylesoftware.htmlunit.html.HtmlElement;
 import com.gargoylesoftware.htmlunit.html.HtmlPage;
-import org.openqa.selenium.WebDriver;
-import steps.BaseSteps;
-import steps.FetchingSteps;
 
-public class BasePage extends BaseSteps{
+public class BasePage{
 
     private HtmlPage page;
 
-    public BasePage() {
-        FetchingSteps fetchingSteps = new FetchingSteps(client);
-        this.page = fetchingSteps.getHtmlPage();
+    public BasePage(HtmlPage page) {
+        this.page = page;
     }
 
     private HtmlElement stockPrice() {
-        HtmlElement currentPrice = page.getFirstByXPath("//fin-streamer[@data-field='regularMarketPrice']");
+        HtmlElement currentPrice = page.getFirstByXPath("//fin-streamer[@data-symbol='AAPL' and @data-field='regularMarketPrice']");
         return currentPrice;
     }
     public HtmlElement getStockPrice() {
