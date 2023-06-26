@@ -11,7 +11,6 @@ public class Main {
         BaseTest tests = new BaseTest();
 
         tests.testYahooScrapping();
-
     }
 
 }
