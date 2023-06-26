@@ -1,4 +1,4 @@
-package pageobjects;
+package pageObjects;
 
 import com.gargoylesoftware.htmlunit.html.HtmlElement;
 import com.gargoylesoftware.htmlunit.html.HtmlPage;
