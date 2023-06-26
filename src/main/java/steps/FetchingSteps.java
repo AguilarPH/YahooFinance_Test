@@ -11,6 +11,10 @@ public class FetchingSteps {
 
     private WebClient client;
     private  HtmlPage page;
+
+    public FetchingSteps() {
+
+    }
     public FetchingSteps(WebClient client) {
         this.client = client;
         this.page = getHtmlPage();
@@ -34,15 +38,21 @@ public class FetchingSteps {
 
         return stockPrice;
     }
-    public String scrapMktCap() {
+    public double scrapMktCap() {
         BasePage basePage = new BasePage(page);
 
         StringBuilder sbMktCap = new StringBuilder();
-        sbMktCap.append(basePage.getMktCap().getTextContent());
-        sbMktCap.deleteCharAt(sbMktCap.length() - 1);
-        System.out.println(sbMktCap);
+        String strMktCap = basePage.getMktCap().getTextContent();
 
-        return sbMktCap.toString();
+        if (strMktCap.substring(strMktCap.length() - 1).compareTo("T") == 0) {
+            sbMktCap.append(strMktCap);
+            sbMktCap.deleteCharAt(strMktCap.length() - 1);
+        }
+
+
+//        sbMktCap.deleteCharAt(sbMktCap.length() - 1);
+
+        return Double.parseDouble(sbMktCap.toString());
     }
     public double scrapPERatio() {
         BasePage basePage = new BasePage(page);
