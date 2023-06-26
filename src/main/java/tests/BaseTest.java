@@ -16,13 +16,13 @@ public class BaseTest extends BaseSteps{
         JSONObject aaplData;
 
         double scrpStockPrice = fetching.scrapStockPrice();
-        String scrpMktCap = fetching.scrapMktCap();
+        double scrpMktCap = fetching.scrapMktCap();
         double scrpPERatio =  fetching.scrapPERatio();
         double scrpDivYield = fetching.scrapDivYield();
 
         aaplData = apiRequest.yahooFinance("AAPL", "price");
         double apiStockPrice = apiRequest.getRegularMarketPrice(aaplData);
-        String apiMktCap = apiRequest.getMktCap(aaplData);
+        double apiMktCap = apiRequest.getMktCap(aaplData);
 
         aaplData = apiRequest.yahooFinance("AAPL", "summaryDetail");
         double apiDivYield = apiRequest.getDividendYield(aaplData);

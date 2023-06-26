@@ -3,6 +3,8 @@ import javax.net.ssl.HttpsURLConnection;
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
+import java.math.BigDecimal;
+import java.math.RoundingMode;
 import java.net.URL;
 
 import org.json.JSONException;
@@ -46,7 +48,6 @@ public class APIRequestSteps {
         try {
             JSONObject result = (JSONObject) jsonQuery.get("regularMarketPrice");
             value = Double.parseDouble(result.get("fmt").toString());
-            System.out.println(value);
 
         } catch (JSONException e) {
             throw new RuntimeException(e);
@@ -54,13 +55,14 @@ public class APIRequestSteps {
         return value;
     }
 
-    public String getMktCap(JSONObject jsonQuery) {
-        String value;
+    public double getMktCap(JSONObject jsonQuery) {
+        double value;
         try {
             JSONObject result = (JSONObject) jsonQuery.get("marketCap");
-            value = result.get("fmt").toString();
 
-            System.out.println(value);
+            value = Double.parseDouble(result.get("raw").toString()) / Math.pow(10, 12);
+
+            value = BigDecimal.valueOf(value).setScale(3, RoundingMode.HALF_UP).doubleValue();
 
         } catch (JSONException e) {
             throw new RuntimeException(e);
@@ -73,7 +75,6 @@ public class APIRequestSteps {
         try {
             JSONObject result = (JSONObject) jsonQuery.get("regularMarketOpen");
             value = Double.parseDouble(result.get("fmt").toString());
-            System.out.println(value);
 
         } catch (JSONException e) {
             throw new RuntimeException(e);
@@ -87,7 +88,6 @@ public class APIRequestSteps {
             StringBuilder sb = new StringBuilder(result.get("fmt").toString());
             sb.deleteCharAt(sb.length() - 1);
             value = Double.parseDouble(sb.toString());
-            System.out.println(value);
 
         } catch (JSONException e) {
             throw new RuntimeException(e);
